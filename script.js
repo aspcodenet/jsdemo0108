@@ -1,11 +1,127 @@
+let numbers = [21,13,5]
+let numbers2 = [2,99,88,77]
+
+
+
+let allNumbers = [...numbers,...numbers2]
+// allNumbers = [21,13,5,2,99,88,77]
+
+let o = {
+    Namn:"Stefan",
+    Age: 20
+}
+
+let o2 = {
+    Jersey:4
+}
+
+let summa = {
+    ...o,
+    ...o2
+}
+
+
+
+
+
+
+function withdraw(belopp){
+    return { ErrorCode:0, Saldo:123 }
+}
+
+let {ErrorCode,Saldo} = withdraw(100)
+
+function withdraw2(belopp){
+    return [0,123]
+}
+
+let [errcode,saldo] = withdraw2(100)
+
+
+
+
+
+
+
+// function importantList(iWant, iDontWant, iNeed, iDontNeed) {
+//      return `${iWant} is what I want!  Dont give me: ${iDontWant} . Sadly I need  ${iNeed}`;
+// }
+
+function importantList({iWant,iDontWant, iNeed}) {
+    // let iWant = o.iWant
+    // let iDontWant = o.iDontWant
+    // let iNeed = o.iNeed
+//    let {iWant,iDontWant, iNeed} = o
+//    console.log(iWant)
+
+    return `${iWant} is what I want!  Dont give me: ${iDontWant} . Sadly I need  ${iNeed}`;
+}
+
+
+
+
+
+
+
+
+// let o = {
+//     iWant:"PS5",
+//     iDontWant: "Strumpor",
+//     iNeed:"TShirt", 
+//     iDontNeed:"Bla"
+// }
+//let text = importantList("PS5","Strumpor", "Tshirt", "blA")
+let text = importantList({
+    iWant:"PS5",
+    iDontWant: "Strumpor",
+    iNeed:"TShirt", 
+    iDontNeed:"Bla"
+})
+
+
+
+
+
+
 const products = [
-    { product: 'banana', price: 3 },
-    { product: 'mango', price: 6 },
-    { product: 'potato', price: 12 },
-    { product: 'avocado', price: 8 },
-    { product: 'coffee', price: 10 },
-    { product: 'tea', price: 12 },
+    { product: 'banana', price: 3, color:"green"  },
+    { product: 'mango', price: 6, color:"green" },
+    { product: 'potato', price: 12, color:"green" },
+    { product: 'avocado', price: 8, color:"green" },
+    { product: 'coffee', price: 10, color:"green" },
+    { product: 'tea', price: 12, color:"green" },
   ]
+
+
+let expensiveProduct  = products.some(product=>product.price > 7)
+let allIsGreen  = products.every(product=>product.price > 7)
+
+let theExpensiveProduct = products.find(product=>product.price > 7)
+if( theExpensiveProduct === undefined ) {
+
+}
+
+
+  // Plocka fram färg och priset inkl moms i en ny array
+let a = { name:"Stefan", jersey:21 }
+a.jersey = 123
+
+  let arrayen=[]
+  for(let product of products){
+    let resultObj = { priceIncMoms: product.price * 1.25, color:product.color }
+    arrayen.push(resultObj)
+  }
+  
+
+arrayen = products.map(product=>{
+    return { priceIncMoms:product.price*1.25, color:product.color }}
+)
+console.log(arrayen)
+
+
+// an
+//Ta fram alla med 'an' i sig
+let result = products.filter(product=>product.product.includes('an'))
 
 // Ta fram alla produkter som kostar mer än 9 kr
 // och lägg i en array
@@ -42,6 +158,14 @@ for(let product of products){
 // FOREACH  - "bara" 3 varianter haha!
 
 // MAP - linq SELECT
+// Skapa en ny lista med alla priser
+let arr=[]
+for(let product of products){
+    arr.push(product.price)
+}
+
+let priser = products.filter(product=>product.product.startsWith('b'))
+    .map(product=>product.price)
 
 // FILTER  (linq WHERE)
 filteredProducts = products.filter(product=>product.price > 9)
